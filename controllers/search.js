@@ -5,8 +5,13 @@ const Ingredient = require('../models/Ingredient');
 const recipeSearchList = async (req, res = response) => {
 
     const { ingredientList } = req.body; // recipeID = Array
-    
-    const recipes = await Recipe.find({
+
+    try {
+      /* 
+        Search all the ingredient_id of the ingredients of this recipe
+        and only the ones that match in ingredient's list length
+      */
+      const recipes = await Recipe.find({
         '$and': [
           {
             'ingredients.ingredient_id': {
@@ -20,36 +25,17 @@ const recipeSearchList = async (req, res = response) => {
         ]
       })
 
-    console.log(recipes);
-
-    res.json({
-        ok: true,
-        recipes
-    })
-    // ingredientList.map((ingredient, i)=>{
-    //     const ingredientVerification = await Ingredient.find({
-    //         _id: ingredient,
-    //     });    
-    //     console.log(ingredientVerification);
-    // })    
-
-    // try {
-    //     const recipes = await Recipe.find({
-    //         ''
-    //     })
-
-    // res.json({
-    //     ok: true,
-    //     ingredientList
-    // })
-
-    // } catch (error) {
-    //     console.log(error);
-    //     res.status(500).json({
-    //         ok: false,
-    //         msg: 'Contact the tech support or the administrator'
-    //     });
-    // }
+      res.json({
+          ok: true,
+          recipes
+      })  
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Contact the tech support or the administrator'
+        });
+    }
 
 }
 
