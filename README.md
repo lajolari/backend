@@ -15,7 +15,7 @@
 ## Add ingredient: 
   - ```host``` + ```/api/ingredients/create```
   - ```POST``` Request
-  - payload:
+  - Payload:
       ```
       {
         "name": String/Required,
@@ -23,7 +23,7 @@
         "spec_cond": Boolean
       }
       ```
-  - response: 
+  - Response: 
       ```
       {
         ok: true,
@@ -37,7 +37,7 @@
 ## Show ingredient list:
   - ```host``` + ```/api/ingredients/```
   - ```GET``` Request
-  - response:
+  - Response:
       ```
       {
         ok: true,
@@ -49,7 +49,7 @@
   - ```host``` + ```/api/ingredients/:id```
   - ```GET``` Request
   - URL param: ```ingredient_id```
-  - response:
+  - Response:
       ```
       {
         ok: true,
@@ -60,7 +60,7 @@
 ## Add Recipe:
   - ```host``` + ```/api/recipes/create```
   - ```POST``` Request
-  - payload:
+  - Payload:
       ```
       {
         "name": String/Required,
@@ -76,7 +76,7 @@
         "preparation": String
       }
       ```
-  - response:
+  - Response:
       ```
       {
         ok: true,
@@ -90,7 +90,7 @@
 ## Show recipe list:
   - ```host``` + ```/api/recipes/```
   - ```GET``` Request
-  - response:
+  - Response:
       ```
       {
         ok: true,
@@ -102,7 +102,7 @@
   - ```host``` + ```/api/recipes/:id```
   - ```GET``` Request
   - URL param: ```recipe_id```
-  - response:
+  - Response:
       ```
       {
         ok: true,
@@ -113,7 +113,7 @@
 ## Search recipe by ingredient list
   - ```host``` + ```/api/search/```
   - ```POST``` Request
-  - payload:
+  - Payload:
       ```
       {
         [
@@ -121,7 +121,7 @@
         ]
       }
       ```
-  - response:
+  - Response:
       ```
       {
         ok: true,
