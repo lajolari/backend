@@ -86,3 +86,45 @@
             }
       }
       ```
+
+## Show recipe list:
+  - ```host``` + ```/api/recipes/```
+  - ```GET``` Request
+  - response:
+      ```
+      {
+        ok: true,
+        recipes(as an Array of Objects)
+      }
+      ```
+      
+## Check recipe detail:
+  - ```host``` + ```/api/recipes/:id```
+  - ```GET``` Request
+  - URL param: ```recipe_id```
+  - response:
+      ```
+      {
+        ok: true,
+        recipe(as an Object)
+      }
+      ```
+
+## Search recipe by ingredient list
+  - ```host``` + ```/api/search/```
+  - ```POST``` Request
+  - payload:
+      ```
+      {
+        [
+          ingredient_id,
+        ]
+      }
+      ```
+  - response:
+      ```
+      {
+        ok: true,
+        recipes(as an Array of Objects)
+      }
+      ```
