@@ -38,6 +38,42 @@ const createRecipe = async (req, res = response ) => {
 
 } 
 
+const updateRecipe = async (req, res = response ) => {
+
+    let { name, ingredients, flexible, preparation } = req.body;
+
+    const recipeOld = await Recipe.findById(req.params.id);
+
+    if(!name){
+        name = recipeOld.name
+    }
+
+    if(ingredients == null){
+        ingredients = recipeOld.ingredients
+    }
+
+    if(!preparation){
+        preparation = recipeOld.preparation
+    }    
+
+    try {
+        await Recipe.findByIdAndUpdate({"_id":req.params.id}, {"$set": { "name": name, "ingredients": ingredients, "flexible": flexible, "preparation": preparation}});
+
+        res.status(201).json({
+            ok: true,
+            msg: "Recipe Updated"
+        })
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Contact the tech support or the administrator'
+        });
+    }
+
+} 
+
 const showRecipeList = async (req, res = response ) => {
 
     try {
@@ -83,5 +119,6 @@ const recipeDetail = async (req, res = response) => {
 module.exports = {
     createRecipe,
     showRecipeList,
-    recipeDetail
+    recipeDetail,
+    updateRecipe
 }
