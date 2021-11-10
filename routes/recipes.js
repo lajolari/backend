@@ -5,7 +5,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validateFields } = require('../middlewares/validate-fields');
-const { createRecipe, showRecipeList, recipeDetail, updateRecipe } = require('../controllers/recipe');
+const { createRecipe, showRecipeList, recipeDetail, updateRecipe, deleteRecipe } = require('../controllers/recipe');
 
 const router = Router();
 
@@ -31,6 +31,11 @@ router.get(
 router.get(
     '/:id',
     recipeDetail
+);
+
+router.delete(
+    '/delete/:id',
+    deleteRecipe
 );
 
 module.exports = router;

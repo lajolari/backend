@@ -112,9 +112,30 @@ const ingredientDetail = async (req, res = response) => {
 
 }
 
+const deleteIngredient = async (req, res = response) => {
+
+    try {
+        await Ingredient.deleteOne({ _id: req.params.id });    
+
+        res.json({
+            ok: true,
+            msg: "Ingredient Deleted"
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Contact the tech support or the administrator'
+        });
+    }
+
+    
+}
+
 module.exports = {
     createIngredient,
     showIngredients,
     ingredientDetail,
-    updateIngredient
+    updateIngredient,
+    deleteIngredient
 }

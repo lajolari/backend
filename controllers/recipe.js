@@ -116,9 +116,30 @@ const recipeDetail = async (req, res = response) => {
 
 }
 
+const deleteRecipe = async (req, res = response) => {
+
+    try {
+        await Recipe.deleteOne({ _id: req.params.id });    
+
+        res.json({
+            ok: true,
+            msg: "Recipe Deleted"
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Contact the tech support or the administrator'
+        });
+    }
+
+    
+}
+
 module.exports = {
     createRecipe,
     showRecipeList,
     recipeDetail,
-    updateRecipe
+    updateRecipe,
+    deleteRecipe
 }
