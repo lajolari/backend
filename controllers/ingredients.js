@@ -38,6 +38,38 @@ const createIngredient = async (req, res = response ) => {
 
 } 
 
+const updateIngredient = async (req, res = response ) => {
+
+    let { name, description, spec_cond } = req.body;
+
+    const ingredientOld = await Ingredient.findById(req.params.id);
+
+    if(!name){
+        name = ingredientOld.name
+    }
+
+    if(!description){
+        description = ingredientOld.description
+    }
+
+    try {
+        await Ingredient.findByIdAndUpdate({"_id":req.params.id}, {"$set": { "name": name, "description": description, "spec_cond": spec_cond}});
+
+        res.status(201).json({
+            ok: true,
+            msg: "Ingredient Updated"
+        })
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Contact the tech support or the administrator'
+        });
+    }
+
+} 
+
 const showIngredients = async (req, res = response) => {
 
     try {
@@ -83,5 +115,6 @@ const ingredientDetail = async (req, res = response) => {
 module.exports = {
     createIngredient,
     showIngredients,
-    ingredientDetail
+    ingredientDetail,
+    updateIngredient
 }
