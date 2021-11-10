@@ -5,7 +5,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validateFields } = require('../middlewares/validate-fields');
-const { createIngredient, showIngredients, ingredientDetail } = require('../controllers/ingredients');
+const { createIngredient, showIngredients, ingredientDetail, updateIngredient, deleteIngredient } = require('../controllers/ingredients');
 
 const router = Router();
 
@@ -18,6 +18,11 @@ router.post(
     createIngredient
 );
 
+router.put(
+    '/update/:id',
+    updateIngredient
+)
+
 router.get(
     '/', 
     showIngredients
@@ -26,6 +31,11 @@ router.get(
 router.get(
     '/:id',
     ingredientDetail
+)
+
+router.delete(
+    '/delete/:id',
+    deleteIngredient
 )
 
 module.exports = router;

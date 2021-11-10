@@ -19,7 +19,7 @@ const recipeSearchList = async (req, res = response) => {
             }
           }, {
             'ingredients': {
-              '$size': ingredientList.length
+              '$lte': ingredientList.length 
             }
           }
         ]
